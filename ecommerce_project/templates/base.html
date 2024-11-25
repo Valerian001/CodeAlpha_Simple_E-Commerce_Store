@@ -11,10 +11,13 @@
 <body>
     <header>
         <nav>
-            <img src="{% static 'images\E-com_logo.svg' %}" alt="logo" class="w-full h-48" />
+            <div>
+                <img src="{% static 'images\E-com_logo.svg' %}" alt="logo"/>
+                <p>Simple E-commerce Store</p>
+            </div>
             <ul>
                 <li><a href="{% url 'product_list' %}">Products</a></li>
-                <li><a href="{% url 'cart' %}">Cart</a></li>
+                <li><a href="{% url 'cart' %}">Cart <span id="cart-icon">(0 unique, 0 total)</span></a></li>
             </ul>
         </nav>
     </header>

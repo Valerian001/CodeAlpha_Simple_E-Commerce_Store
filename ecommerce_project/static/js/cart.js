@@ -27,7 +27,12 @@ function updateCartDisplay() {
             const itemElement = document.createElement('div');
             itemElement.className = 'cart-item';
             itemElement.innerHTML = `
-                <p>${item.name} - Quantity: ${item.quantity} - $${(item.price * item.quantity).toFixed(2)}</p>
+                
+                <span class="details">
+                    <p>${item.name}</p>
+                    <p>Quantity: ${item.quantity}</p>
+                </span>
+                <p>$${(item.price * item.quantity).toFixed(2)}</p>
                 <button onclick="removeFromCart(${item.id})">Remove</button>
             `;
             cartItems.appendChild(itemElement);
@@ -70,8 +75,10 @@ function loadCartFromLocalStorage() {
 function updateCartIcon() {
     const cartIcon = document.getElementById('cart-icon');
     if (cartIcon) {
-        const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
-        cartIcon.textContent = `Cart (${itemCount})`;
+        const uniqueItemCount = cart.length;
+        const totalItemCount = cart.reduce((total, item) => total + item.quantity, 0);
+        cartIcon.textContent = `(${uniqueItemCount} unique, ${totalItemCount} total)`;
+        cartIcon.setAttribute('aria-label', `Cart with ${uniqueItemCount} unique items and ${totalItemCount} total items`);
     }
 }
 
